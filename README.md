@@ -21,7 +21,7 @@ minor fiddling. I use zsh on OS X, so if you would like to use these dotfiles, y
 The `rake install` command from above will ask you to do so and switch automatically once you confirm.
 
 If there are some shell configuration settings which you want secure or
-specific to one system, place it into a ~/.localrc file. This will be
+specific to one system, place it into a `~/.localrc` file. This will be
 loaded automatically if it exists.
 
 
