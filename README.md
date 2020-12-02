@@ -12,7 +12,7 @@ rake install
  ```
   
 ## Vim Plugins
-There are a few vim plugins I use. Please review .gitmodules File _before_ installation, if you'd like to use these.
+There are a few vim plugins I use. Please review `.gitmodules` File _before_ installation, if you'd like to use these.
 
 ## Environment
 
