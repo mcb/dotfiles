@@ -5,10 +5,11 @@ These are config files to set up a system the way I like it.
 
 ## Installation
 
-  git clone git://github.com/mcb/dotfiles ~/.dotfiles
-  cd ~/.dotfiles
-  rake install
-  
+```
+git clone git://github.com/mcb/dotfiles ~/.dotfiles
+cd ~/.dotfiles
+rake install
+ ```
   
 ## Vim Plugins
 There are a few vim plugins I use. Please review .gitmodules File _before_ installation, if you'd like to use these.
