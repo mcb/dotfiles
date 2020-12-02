@@ -1,0 +1,8 @@
+.DS_Store
+.svn
+*~
+.*.swp
+._*
+.idea/
+.tags
+.tags_sorted_by_file

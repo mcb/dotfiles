@@ -1,0 +1,30 @@
+[user]
+	name = <%= print("Your Name: "); STDOUT.flush; STDIN.gets.chomp %>
+	email = <%= print("Your Email: "); STDOUT.flush; STDIN.gets.chomp %>
+[alias]
+	lg = <%= "log --simplify-merges --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit" %>
+  c = commit
+  st = status
+  co = checkout
+  cp = cherry-pick
+  br = branch
+  changes = diff --name-status -r
+  diffstat = diff --stat -r
+[core]
+  excludesfile = <%= ENV['HOME'] %>/.gitignore
+  editor = vim
+  autocrlf = input
+  whitespace = -trailing-space, -space-before-tab
+[init]
+  defaultBranch = main
+[mergetool]
+  keepBackup = false
+  prompt = false
+[apply]
+  whitespace = nowarn
+[diff]
+  tool = diff
+[merge]
+  tool = diff
+[push]
+  default = simple
