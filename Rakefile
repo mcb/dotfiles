@@ -46,8 +46,13 @@ def link_file(file)
       new_file.write ERB.new(File.read(file)).result(binding)
     end
   else
-    puts "linking ~/.#{file}"
-    system %Q{ln -s "$PWD/#{file}" "$HOME/.#{file}"}
+    if file.include? "Brewfile"
+      puts "linking ~/#{file}"
+      system %Q{ln -s "$PWD/#{file}" "$HOME/#{file}"}
+    else 
+      puts "linking ~/.#{file}"
+      system %Q{ln -s "$PWD/#{file}" "$HOME/.#{file}"}
+    end
   end
 end
 
