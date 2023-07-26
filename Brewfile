@@ -1,6 +1,4 @@
 tap "homebrew/bundle"
-tap "homebrew/cask"
-tap "homebrew/core"
 brew "bash"
 brew "python@3.10"
 brew "coreutils"
