@@ -58,10 +58,17 @@ if [ $commands[kubectl] ]; then
 fi
 
 # direnv config
+_GREEN=$(tput setaf 2)
+_BLUE=$(tput setaf 4)
+_RED=$(tput setaf 1)
+_RESET=$(tput sgr0)
+_BOLD=$(tput bold)
+
+
 eval "$(direnv hook zsh)"
 show_virtual_env() {
   if [[ -n "$VIRTUAL_ENV" && -n "$DIRENV_DIR" ]]; then
-    echo "\e[0;32m($(basename $VIRTUAL_ENV)) \e[m"
+    echo "${_GREEN}($(basename $VIRTUAL_ENV))${_RESET} "
   fi
 }
 PS1='$(show_virtual_env)'$PS1
