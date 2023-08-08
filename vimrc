@@ -45,9 +45,23 @@ set visualbell " flash screen instead beeping
 set foldmethod=indent
 set foldnestmax=3 " only fold up to three levels
 
+" netrw
+
+let g:netrw_banner = 0 " remove banner on top of netrw
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 20
+augroup ProjectDrawer
+  autocmd!
+  autocmd VimEnter * :Vexplore
+augroup END
+
 " misc
 
 set backspace=indent,eol,start " allow backspacing over indent, line break, insertions
 set history=1000 " increase history
 set spell " enable spell checking
 set noswapfile " disable swap files
+
+
