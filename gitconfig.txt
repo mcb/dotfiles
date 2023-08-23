@@ -1,8 +1,8 @@
 [user]
-	name = <%= print("Your Name: "); STDOUT.flush; STDIN.gets.chomp %>
-	email = {ID}+{username}@users.noreply.github.com
+	name = ${name}
+	email = ${id}+${username}@users.noreply.github.com
 [alias]
-	lg = <%= "log --simplify-merges --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit" %>
+	lg = log --simplify-merges --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
   c = commit
   st = status
   co = checkout
@@ -11,7 +11,7 @@
   changes = diff --name-status -r
   diffstat = diff --stat -r
 [core]
-  excludesfile = <%= ENV['HOME'] %>/.gitignore
+  excludesfile = ${HOME}/.gitignore
   editor = vim
   autocrlf = input
   whitespace = -trailing-space, -space-before-tab
