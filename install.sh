@@ -23,8 +23,21 @@ ln -sf $dotfiles_dir/vim ~/.vim
 ln -sf $dotfiles_dir/vimrc ~/.vimrc
 ln -sf $dotfiles_dir/zsh ~/.zsh
 ln -sf $dotfiles_dir/zshrc ~/.zshrc
-ln -sf $dotfiles_dir/Brewfile ~/Brewfile
 ln -sf $dotfiles_dir/config ~/.config
+
+
+#=============
+# Create Brewfile based on profile 
+#=============
+
+echo "Create Brewfile based on profile. Do you want to use this computer for work or private (w/p)"
+select wp in "Work" "Private"; do
+    case $wp in 
+        Work ) ln -sf $dotfiles_dir/brew/Brewfile.work ~/Brewfile;; break;;
+        Private ) ln -sf $dotfiles_dir/brew/Brewfile.private ~/Brewfile;; break;;
+    esac
+done
+
 
 #=============
 # Create personalized gitconfig
