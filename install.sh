@@ -30,11 +30,11 @@ ln -sf $dotfiles_dir/config ~/.config
 # Create Brewfile based on profile 
 #=============
 
-echo "Create Brewfile based on profile. Do you want to use this computer for work or private (w/p)"
+echo "Create Brewfile based on profile. Do you want to use this computer for work or private? Please type in the number of the option."
 select wp in "Work" "Private"; do
     case $wp in 
-        Work ) ln -sf $dotfiles_dir/brew/Brewfile.work ~/Brewfile;; break;;
-        Private ) ln -sf $dotfiles_dir/brew/Brewfile.private ~/Brewfile;; break;;
+        Work ) ln -sf $dotfiles_dir/brew/Brewfile.work ~/Brewfile; break;;
+        Private ) ln -sf $dotfiles_dir/brew/Brewfile.private ~/Brewfile; break;;
     esac
 done
 
