@@ -49,4 +49,4 @@ read -p "Your Github ID: " id
 read -p "Your Github Username: " username
 
 export name id username
-cat $dotfiles_dir/gitconfig.txt | envsubst > ~/.gitconfig
+cat $dotfiles_dir/gitconfig | envsubst > ~/.gitconfig
