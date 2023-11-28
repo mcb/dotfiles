@@ -16,9 +16,8 @@ There are a few vim plugins I use. Please review `.gitmodules` File _before_ ins
 
 ## Environment
 
-I am running on Mac OS X, but it will likely work on Linux as well with
-minor fiddling. I use zsh on OS X, so if you would like to use these dotfiles, you should consider switching to zsh.
-The `install.sh` command from above will ask you to do so and switch automatically once you confirm.
+I am running on macOS, but it will likely work on Linux as well with
+minor fiddling. I use zsh on macOS, so if you would like to use these .dotfiles, you should consider switching to zsh.
 
 If there are some shell configuration settings which you want secure or
 specific to one system, place it into a `~/.localrc` file. This will be
