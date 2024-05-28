@@ -91,7 +91,6 @@ while getopts ":hagmrs:" option; do
       a) # perform all actions
          Cleanup
          Symlink
-         Brew
          Macports
          Git
          exit;;
