@@ -78,12 +78,12 @@ Help()
   echo "-h   Print this help"
   echo "-m   Set up macports from list"
   echo "-r   Remove all existing resources"
-  echo "-s   Set up symlinks"
+  echo "-l   Set up symlinks"
   echo
 }
 
 
-while getopts ":hagmrs:" option; do
+while getopts ":hagmrl:" option; do
    case $option in
       h) # display Help
          Help
@@ -103,7 +103,7 @@ while getopts ":hagmrs:" option; do
       r) # Remove all existing resources
          Cleanup
          exit;;
-      s) # Symlink creation
+      l) # Symlink creation
          Symlink
          exit;;
      \?) # Invalid option
