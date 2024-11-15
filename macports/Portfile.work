@@ -16,3 +16,4 @@ minikube
 podman
 watch
 confluent-cli
+terraform-1.9
