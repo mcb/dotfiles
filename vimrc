@@ -1,4 +1,5 @@
 packadd! nord-vim
+packadd vimcomplete
 
 " Indentation
 
@@ -18,6 +19,11 @@ set smartcase " switch to case sensitive when search includes uppercase letter
 
 set complete-=i " limit files searched
 
+
+" copying
+set clipboard=unnamed
+
+
 " text rendering
 
 set encoding=utf-8
@@ -33,7 +39,9 @@ set sidescrolloff=5 " The number of screen columns to keep to the left and right
 set laststatus=2 " always display status bar
 set ruler " always show cursor position
 set wildmenu " display command lines tab complete as a menu
+
 colorscheme nord
+
 set wildmode=longest,list,full
 " set cursorline " highlight current line under cursor
 set number " display line numbers
@@ -56,6 +64,9 @@ augroup ProjectDrawer
   autocmd!
   autocmd VimEnter * :Vexplore
 augroup END
+
+" vimcomplete
+let g:vimcomplete_tab_enable = 1
 
 " misc
 
