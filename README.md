@@ -14,6 +14,10 @@ cd ~/.dotfiles
 ## Vim Plugins
 There are a few vim plugins I use. Please review `.gitmodules` File _before_ installation, if you'd like to use these.
 
+## Direnv
+
+I make extensive use of direnv for my python/java needs. Please make sure to install direnv, otherwise this setup will *not* work.
+
 ## Environment
 
 I am running on macOS, but it will likely work on Linux as well with
