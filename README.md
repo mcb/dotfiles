@@ -16,7 +16,7 @@ There are a few vim plugins I use. Please review `.gitmodules` File _before_ ins
 
 ## Direnv
 
-I make extensive use of direnv for my python/java needs. Please make sure to install direnv, otherwise this setup will *not* work.
+I make extensive use of direnv for my python/java needs. Please make sure to install direnv, otherwise this setup will *not* work. Java is supported by using Jabba, where direnv plugs into to always set up the correct java for my projects.
 
 ## Environment
 
