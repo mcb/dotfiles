@@ -18,6 +18,10 @@ There are a few vim plugins I use. Please review `.gitmodules` File _before_ ins
 
 I make extensive use of direnv for my python/java needs. Please make sure to install direnv, otherwise this setup will *not* work. Java is supported by using Jabba, where direnv plugs into to always set up the correct java for my projects.
 
+
+To make use of python in your projects, place a `.envrc` file with the contents `layout python python3.12` into the root of the directory and `direnv allow` after closing the file. Same goes for Java.
+
+
 ## Environment
 
 I am running on macOS, but it will likely work on Linux as well with
