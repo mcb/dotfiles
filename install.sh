@@ -77,21 +77,21 @@ Help()
   echo "-g   Set up personalised gitconfig"
   echo "-h   Print this help"
   echo "-m   Set up macports from list"
+  echo "-b   Set up homebrew from list"
   echo "-r   Remove all existing resources"
   echo "-l   Set up symlinks"
   echo
 }
 
 
-while getopts ":hagmrl" option; do
+while getopts ":hagmbrl" option; do
    case $option in
       h) # display Help
          Help
          exit;;
-      a) # perform all actions
+      a) # perform all actions except for MacPorts/Brew
          Cleanup
          Symlink
-         Macports
          Git
          exit;;
       g) # Set up git
@@ -99,6 +99,9 @@ while getopts ":hagmrl" option; do
          exit;;
       m) # Set up Macports
          Macports
+         exit;;
+      b) # Set up Brew
+         Brew
          exit;;
       r) # Remove all existing resources
          Cleanup
