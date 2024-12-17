@@ -8,7 +8,9 @@ These are config files to set up a system the way I like it.
 ```
 git clone git://github.com/mcb/dotfiles ~/.dotfiles
 cd ~/.dotfiles
-./install.sh
+./install.sh -a
+./install.sh -b # to install homebrew resources, will require homebrew installation
+./install.sh -m # to install macports resources, will require macports installation
  ```
   
 ## Vim Plugins
