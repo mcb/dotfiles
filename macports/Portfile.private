@@ -1,9 +1,6 @@
 coreutils
-gettext
 python312
 git
-nmap
 direnv
 vim
 jq
-watch
