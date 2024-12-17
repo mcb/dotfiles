@@ -83,7 +83,7 @@ Help()
 }
 
 
-while getopts ":hagmrl:" option; do
+while getopts ":hagmrl" option; do
    case $option in
       h) # display Help
          Help
@@ -108,6 +108,7 @@ while getopts ":hagmrl:" option; do
          exit;;
      \?) # Invalid option
          echo "Error: Invalid option"
+         Help
          exit;;
    esac
 done
