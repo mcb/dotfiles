@@ -1,6 +1,6 @@
 .DS_Store
-config
+config/
 vim/.netrwhist
-!config/kitty
-!config/vim
-!config/direnv
+!config/kitty/
+!config/vim/
+!config/direnv/
