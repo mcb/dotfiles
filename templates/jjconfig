@@ -1,13 +1,9 @@
-[user]
-  name = ${name}
-  email = ${id}+${username}@users.noreply.github.com
-
-'$schema' = 'https://jj-vcs.github.io/jj/latest/config-schema.json'
+'$${s}schema' = 'https://jj-vcs.github.io/jj/latest/config-schema.json'
 
 [user]
-name = ${name}
-email = ${id}+${username}@users.noreply.github.com
-username = ${username}
+name = '${name}'
+email = '${id}+${username}@users.noreply.github.com'
+username = '${username}'
 
 [ui]
 editor = 'vim'
