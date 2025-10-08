@@ -1,0 +1,47 @@
+[user]
+  name = ${name}
+  email = ${id}+${username}@users.noreply.github.com
+
+'$schema' = 'https://jj-vcs.github.io/jj/latest/config-schema.json'
+
+[user]
+name = ${name}
+email = ${id}+${username}@users.noreply.github.com
+username = ${username}
+
+[ui]
+editor = 'vim'
+pager = ':builtin'
+diff-editor = ':builtin'
+diff-formatter = ':git'
+graph.style = 'square'
+default-command = 'log'
+
+[git]
+push-new-bookmarks = true
+track-default-bookmark-on-clone = false
+private-commits = 'private()'
+write-change-id-header = true
+
+[revsets]
+log = '(present(@) | ancestors(immutable_heads().., 2) | present(trunk())) & ~blacklist()'
+
+[revset-aliases]
+'wip()' = 'description(glob:"wip:*")'
+'stash()' = 'description(glob:"stash:*")'
+'blacklist()' = 'stash()'
+'private()' = 'mutable() & (description(exact:"") | wip() | (empty() & ~merges())) | blacklist()'
+'until(to)' = 'heads(::to & ~private())'
+'until_bookmark(to)' = 'heads(::to & bookmarks())'
+'branch(to)' = 'heads((::to | to::) & ~private())'
+'branch_bookmark(to)' = 'heads((::to | to::) & bookmarks())'
+'stack(to)' = 'ancestors(reachable(to, mutable() & ~blacklist()), 2)'
+'user(x)' = 'author(x) | committer(x)'
+
+
+[aliases]
+# status
+st = ['status']
+
+# log
+lg = ['log']

@@ -1,4 +1,5 @@
 dotfiles_dir=~/.dotfiles
+template_dir=~/.dotfiles/templates
 
 #=============
 # Clean all existing resources
@@ -12,8 +13,7 @@ Cleanup()
   rm -rf ~/.vimrc > /dev/null 2>&1
   rm -rf ~/.zsh > /dev/null 2>&1
   rm -rf ~/.zshrc > /dev/null 2>&1
-  rm -rf ~/.gitconfig > /dev/null 2>&1
-  rm -rf ~/Brewfile > /dev/null 2>&1
+  # rm -rf ~/.gitconfig > /dev/null 2>&1
   rm -rf ~/.config > /dev/null 2>&1
 }
 
@@ -31,32 +31,18 @@ Symlink()
 }
 
 #=============
-# Create Brewfile based on profile 
-#=============
-
-Brew() 
-{
-  echo "Create Brewfile based on profile. Do you want to use this computer for work or private? Please type in the number of the option."
-  select wp in "Work" "Private"; do
-      case $wp in 
-          Work ) ln -sf $dotfiles_dir/brew/Brewfile.work ~/Brewfile; break;;
-          Private ) ln -sf $dotfiles_dir/brew/Brewfile.private ~/Brewfile; break;;
-      esac
-  done
-}
-
-#=============
 # Create personalized gitconfig
 #=============
 
 Git() {
-  echo "Personalizing your git(hub) experience"
+  echo "Personalizing your jj/git(hub) experience"
   read -p "Your Full Name: " name
   read -p "Your Github ID: " id
   read -p "Your Github Username: " username
 
   export name id username
-  cat $dotfiles_dir/gitconfig | envsubst > ~/.gitconfig
+  # cat $template_dir/gitconfig | envsubst > ~/.gitconfig
+  cat $template_dir/jjconfig | envsubst > ~/.config/jj/config.toml
 }
 
 Macports() {
