@@ -80,12 +80,13 @@ Help()
 }
 
 
-while getopts ":hagprl:" option; do
+
+while getopts ":hagpbrl" option; do
    case $option in
       h) # display Help
          Help
          exit;;
-      a) # perform all actions
+      a) # perform all actions except for Brew
          Cleanup
          Symlink
          Packages
@@ -97,6 +98,9 @@ while getopts ":hagprl:" option; do
       p) # Set up Packages
          Packages
          exit;;
+      b) # Set up Brew
+         Brew
+         exit;;
       r) # Remove all existing resources
          Cleanup
          exit;;
@@ -105,6 +109,7 @@ while getopts ":hagprl:" option; do
          exit;;
      \?) # Invalid option
          echo "Error: Invalid option"
+         Help
          exit;;
    esac
 done
