@@ -8,7 +8,7 @@ setopt PROMPT_SUBST
 PROMPT='%1~ %# '
 RPROMPT='${vcs_info_msg_0_}%'
 
-export PATH="$HOME/.bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/.bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:$PATH"
 export MANPATH="/usr/local/man:/usr/local/mysql/man:/usr/local/git/man:$MANPATH"
 
 HISTFILE=~/.zsh_history
@@ -55,6 +55,13 @@ fi
 # k8s config
 if [ $commands[kubectl] ]; then 
   source <(kubectl completion zsh); 
+fi
+
+# jj config
+if [ $commands[jj] ]; then
+  autoload -U compinit
+  compinit
+  source <(jj util completion zsh)
 fi
 
 # direnv config
