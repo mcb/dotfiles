@@ -1,6 +1,6 @@
 coreutils
 gettext
-python312
+python313
 git
 nmap
 direnv
