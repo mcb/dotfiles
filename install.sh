@@ -43,13 +43,14 @@ Vcs() {
 
   export name id username
   # cat $template_dir/gitconfig | envsubst > ~/.gitconfig
+  mkdir -p ~/.config/jj
   cat $template_dir/jjconfig | envsubst > ~/.config/jj/config.toml
 }
 
 Packages() {
   echo "Installing listed packages based on profile. Do you want to use this computer for work or private? Please type in the number of the option."
   if [[ "$OSTYPE" == "darwin"* ]]; then
-    package_path='macports'
+    package_path='ports'
     package_command='sudo port install'
   elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
     package_path='apt'
@@ -60,8 +61,8 @@ Packages() {
   fi
   select wp in "Work" "Private"; do
     case $wp in
-      Work ) for p in $(cat $dotfiles_dir/$package_path/Packages.work); do $package_command $p; done; break;;
-      Private ) for p in $(cat $dotfiles_dir/$package_path/Packages.private); do $package_command $p; done; break;;
+      Work ) for p in $(cat $dotfiles_dir/$package_path/packages.work); do $package_command $p; done; break;;
+      Private ) for p in $(cat $dotfiles_dir/$package_path/packages.private); do $package_command $p; done; break;;
     esac
   done
 }
@@ -70,9 +71,9 @@ Help()
 {
   echo "Usage:"
   echo
+  echo "-h   Print this help"
   echo "-a   Perform all setup steps"
   echo "-g   Set up personalised jj/gitconfig"
-  echo "-h   Print this help"
   echo "-p   Set up packages from list"
   echo "-r   Remove all existing resources"
   echo "-l   Set up symlinks"
@@ -81,7 +82,7 @@ Help()
 
 
 
-while getopts ":hagpbrl" option; do
+while getopts ":hagprl" option; do
    case $option in
       h) # display Help
          Help
@@ -97,9 +98,6 @@ while getopts ":hagpbrl" option; do
          exit;;
       p) # Set up Packages
          Packages
-         exit;;
-      b) # Set up Brew
-         Brew
          exit;;
       r) # Remove all existing resources
          Cleanup
