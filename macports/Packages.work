@@ -2,10 +2,7 @@ coreutils
 python313
 git
 nmap
-ffmpeg
-yt-dlp
 direnv
-nodejs24
 vim
 k9s
 jq

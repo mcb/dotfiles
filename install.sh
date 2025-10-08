@@ -1,5 +1,7 @@
 dotfiles_dir=~/.dotfiles
 template_dir=~/.dotfiles/templates
+package_path=''
+package_command=''
 
 #=============
 # Clean all existing resources
@@ -33,7 +35,7 @@ Symlink()
 # Create personalized gitconfig
 #=============
 
-Git() {
+Vcs() {
   echo "Personalizing your jj/git(hub) experience"
   read -p "Your Full Name: " name
   read -p "Your Github ID: " id
@@ -44,12 +46,22 @@ Git() {
   cat $template_dir/jjconfig | envsubst > ~/.config/jj/config.toml
 }
 
-Macports() {
-  echo "Installing listed ports based on profile. Do you want to use this computer for work or private? Please type in the number of the option."
+Packages() {
+  echo "Installing listed packages based on profile. Do you want to use this computer for work or private? Please type in the number of the option."
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    package_path='macports'
+    package_command='sudo port install'
+  elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    package_path='apt'
+    package_command='sudo apt install -y'
+  else
+    echo "Unkown OS."
+    exit 1
+  fi
   select wp in "Work" "Private"; do
     case $wp in
-      Work ) for p in $(cat $dotfiles_dir/macports/Portfile.work); do sudo port install $p; done; break;;
-      Private ) for p in $(cat $dotfiles_dir/macports/Portfile.private); do sudo port install $p; done; break;;
+      Work ) for p in $(cat $dotfiles_dir/$package_path/Packages.work); do $package_command $p; done; break;;
+      Private ) for p in $(cat $dotfiles_dir/$package_path/Packages.private); do $package_command $p; done; break;;
     esac
   done
 }
@@ -59,16 +71,16 @@ Help()
   echo "Usage:"
   echo
   echo "-a   Perform all setup steps"
-  echo "-g   Set up personalised gitconfig"
+  echo "-g   Set up personalised jj/gitconfig"
   echo "-h   Print this help"
-  echo "-m   Set up macports from list"
+  echo "-p   Set up packages from list"
   echo "-r   Remove all existing resources"
   echo "-l   Set up symlinks"
   echo
 }
 
 
-while getopts ":hagmrl:" option; do
+while getopts ":hagprl:" option; do
    case $option in
       h) # display Help
          Help
@@ -76,14 +88,14 @@ while getopts ":hagmrl:" option; do
       a) # perform all actions
          Cleanup
          Symlink
-         Macports
-         Git
+         Packages
+         Vcs
          exit;;
-      g) # Set up git
-         Git
+      g) # Set up git/jj
+         Vcs
          exit;;
-      m) # Set up Macports
-         Macports
+      p) # Set up Packages
+         Packages
          exit;;
       r) # Remove all existing resources
          Cleanup
