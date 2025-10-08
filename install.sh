@@ -24,7 +24,6 @@ Symlink()
 {
   echo "Creating all symlinks"
   ln -sf $dotfiles_dir/vim ~/.vim
-  ln -sf $dotfiles_dir/vimrc ~/.vimrc
   ln -sf $dotfiles_dir/zsh ~/.zsh
   ln -sf $dotfiles_dir/zshrc ~/.zshrc
   ln -sf $dotfiles_dir/config ~/.config
