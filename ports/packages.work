@@ -1,3 +1,4 @@
+ripgrep
 coreutils
 python313
 git
@@ -10,5 +11,4 @@ kind
 podman
 watch
 confluent-cli
-direnv
 uv
