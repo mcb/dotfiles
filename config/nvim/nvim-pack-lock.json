@@ -1,0 +1,10 @@
+{
+  "plugins": {
+    "blink.cmp": {
+      "version": ">=1.7.0"
+    },
+    "friendly-snippets": [],
+    "mini.pick": [],
+    "neovim": []
+  }
+}
