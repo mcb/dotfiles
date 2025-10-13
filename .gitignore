@@ -1,6 +1,6 @@
 .DS_Store
-config/
-vim/.netrwhist
-!config/kitty/
-!config/vim/
-!config/direnv/
+config/vim/pack/
+.netrwhist
+
+# will be generated
+config/jj/config.toml
