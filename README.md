@@ -9,12 +9,16 @@ These are config files to set up a system the way I like it.
 git clone git://github.com/mcb/dotfiles ~/.dotfiles
 cd ~/.dotfiles
 ./install.sh -a
-./install.sh -b # to install homebrew resources, will require homebrew installation
-./install.sh -m # to install macports resources, will require macports installation
+./install.sh -g # to set up jj config
+./install.sh -m # to install macports/apt resources, will require macports on mac or debian installation
  ```
   
-## Vim Plugins
+## Deprecated: Vim Plugins
 There are a few vim plugins I use. Please review `.gitmodules` File _before_ installation, if you'd like to use these.
+
+## nvim
+Experimental install using nvim >0.12 with the `vim.pack` package manager. This __will__ break in lower versions. 
+
 
 ## Direnv
 
