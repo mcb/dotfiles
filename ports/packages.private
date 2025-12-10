@@ -8,3 +8,5 @@ direnv
 vim
 jq
 watch
+jujustsu
+neovim
