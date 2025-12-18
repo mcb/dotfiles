@@ -2,8 +2,15 @@ vim.pack.add({
   "https://github.com/rose-pine/neovim",
   "https://github.com/rafamadriz/friendly-snippets",
   "https://github.com/nvim-mini/mini.pick",
+  "https://github.com/rose-pine/neovim",
   -- revisit treesitter at some point
   { src = "https://github.com/Saghen/blink.cmp", version = vim.version.range('>=1.7') }, 
+})
+
+require("rose-pine").setup({
+  highlight_groups = {
+    Cursor = { fg = "highlight_high", bg = "highlight_high" }
+  }
 })
 
 require('mini.pick').setup({})

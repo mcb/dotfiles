@@ -14,10 +14,12 @@ graph.style = 'square'
 default-command = 'log'
 
 [git]
-push-new-bookmarks = true
 track-default-bookmark-on-clone = false
 private-commits = 'private()'
 write-change-id-header = true
+
+[remotes.origin]
+auto-track-bookmarks = "glob:*"
 
 [revsets]
 log = '(present(@) | ancestors(immutable_heads().., 2) | present(trunk())) & ~blacklist()'

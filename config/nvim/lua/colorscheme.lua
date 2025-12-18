@@ -1,5 +1,5 @@
 -- define colorscheme here
-local colorscheme = 'rose-pine'
+local colorscheme = 'rose-pine-moon'
 
 local is_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
 if not is_ok then
