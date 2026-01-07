@@ -1,15 +1,20 @@
-# Load version control info
-autoload -Uz vcs_info
-precmd() { vcs_info }
+autoload -Uz compinit vcs_info
+
+#---
+#  Completion
+#---
+
+compinit -C
+zstyle ':completion:*' menu yes select
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' # Case-insensitive completion
+
 zstyle ':vcs_info:git:*' formats '%F{blue}%b%f'
+precmd() { vcs_info }
 
 # Set up the prompt (with git branch name)
 setopt PROMPT_SUBST
 PROMPT='%1~ %# '
-RPROMPT='${vcs_info_msg_0_}%'
-
-export PATH="$HOME/.local/bin:$HOME/.bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:$PATH"
-export MANPATH="/usr/local/man:/usr/local/mysql/man:/usr/local/git/man:$MANPATH"
+RPROMPT='${vcs_info_msg_0_}'
 
 HISTFILE=~/.zsh_history
 HISTSIZE=1000
@@ -22,14 +27,12 @@ setopt NO_LIST_BEEP
 setopt LOCAL_OPTIONS # allow functions to have local options
 setopt LOCAL_TRAPS # allow functions to have local traps
 setopt HIST_VERIFY
-setopt SHARE_HISTORY # share history between sessions ???
 setopt EXTENDED_HISTORY # add timestamps to history
 setopt CORRECT
 setopt COMPLETE_IN_WORD
 setopt IGNORE_EOF
 
-setopt APPEND_HISTORY # adds history
-setopt INC_APPEND_HISTORY SHARE_HISTORY  # adds history incrementally and share it across sessions
+setopt APPEND_HISTORY SHARE_HISTORY  # adds history and share it across sessions
 setopt HIST_IGNORE_ALL_DUPS  # don't record dupes in history
 setopt HIST_REDUCE_BLANKS
 
@@ -44,14 +47,6 @@ setopt EXTENDED_GLOB        # Use extended globbing syntax.
 unsetopt CLOBBER            # Do not overwrite existing files with > and >>.
                             # Use >! and >>! to bypass.
 
-# brew config
-if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
-
-  autoload -Uz compinit
-  compinit
-fi
-
 # k8s config
 if [ $commands[kubectl] ]; then 
   source <(kubectl completion zsh); 
@@ -59,23 +54,15 @@ fi
 
 # jj config
 if [ $commands[jj] ]; then
-  autoload -U compinit
-  compinit
   source <(jj util completion zsh)
 fi
 
 # direnv config
-_GREEN=$(tput setaf 2)
-_BLUE=$(tput setaf 4)
-_RED=$(tput setaf 1)
-_RESET=$(tput sgr0)
-_BOLD=$(tput bold)
-
 
 eval "$(direnv hook zsh)"
 show_virtual_env() {
   if [[ -n "$VIRTUAL_ENV" && -n "$DIRENV_DIR" ]]; then
-    echo "${_GREEN}($(basename $VIRTUAL_ENV))${_RESET} "
+    echo "%F{green}($(basename $VIRTUAL_ENV))%f "
   fi
 }
-PS1='$(show_virtual_env)'$PS1
+PROMPT='$(show_virtual_env)'$PROMPT
