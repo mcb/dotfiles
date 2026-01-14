@@ -1,4 +1,3 @@
-packadd! nord-vim
 packadd vimcomplete
 
 " Indentation
@@ -39,8 +38,6 @@ set sidescrolloff=5 " The number of screen columns to keep to the left and right
 set laststatus=2 " always display status bar
 set ruler " always show cursor position
 set wildmenu " display command lines tab complete as a menu
-
-colorscheme nord
 
 set wildmode=longest,list,full
 " set cursorline " highlight current line under cursor
