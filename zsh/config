@@ -1,68 +1,89 @@
-autoload -Uz compinit vcs_info
-
 #---
-#  Completion
+# Completion
 #---
-
+autoload -Uz compinit
 compinit -C
+
 zstyle ':completion:*' menu yes select
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' # Case-insensitive completion
 
-zstyle ':vcs_info:git:*' formats '%F{blue}%b%f'
-precmd() { vcs_info }
-
-# Set up the prompt (with git branch name)
+#---
+# Prompt
+#---
 setopt PROMPT_SUBST
-PROMPT='%1~ %# '
-RPROMPT='${vcs_info_msg_0_}'
 
-HISTFILE=~/.zsh_history
-HISTSIZE=1000
-SAVEHIST=1000
-REPORTTIME=10 # print elapsed time when more than 10 seconds
+repo_indicator() {
+  # Early return if not in a repo - faster than checking both
+  if git rev-parse --is-inside-work-tree &>/dev/null; then
+    echo " 📦"
+    return
+  fi
+  jj root &>/dev/null 2>&1 && echo " 📦"
+}
 
-setopt NO_BG_NICE # don't nice background tasks
-setopt NO_HUP
-setopt NO_LIST_BEEP
-setopt LOCAL_OPTIONS # allow functions to have local options
-setopt LOCAL_TRAPS # allow functions to have local traps
-setopt HIST_VERIFY
-setopt EXTENDED_HISTORY # add timestamps to history
-setopt CORRECT
-setopt COMPLETE_IN_WORD
-setopt IGNORE_EOF
-
-setopt APPEND_HISTORY SHARE_HISTORY  # adds history and share it across sessions
-setopt HIST_IGNORE_ALL_DUPS  # don't record dupes in history
-setopt HIST_REDUCE_BLANKS
-
-setopt AUTO_CD              # Auto changes to a directory without typing cd.
-setopt AUTO_PUSHD           # Push the old directory onto the stack on cd.
-setopt PUSHD_IGNORE_DUPS    # Do not store duplicates in the stack.
-setopt PUSHD_SILENT         # Do not print the directory stack after pushd or popd.
-setopt PUSHD_TO_HOME        # Push to home directory when no argument is given.
-setopt CDABLE_VARS          # Change directory to a path stored in a variable.
-setopt MULTIOS              # Write to multiple descriptors.
-setopt EXTENDED_GLOB        # Use extended globbing syntax.
-unsetopt CLOBBER            # Do not overwrite existing files with > and >>.
-                            # Use >! and >>! to bypass.
-
-# k8s config
-if [ $commands[kubectl] ]; then 
-  source <(kubectl completion zsh); 
-fi
-
-# jj config
-if [ $commands[jj] ]; then
-  source <(jj util completion zsh)
-fi
-
-# direnv config
-
-eval "$(direnv hook zsh)"
 show_virtual_env() {
   if [[ -n "$VIRTUAL_ENV" && -n "$DIRENV_DIR" ]]; then
     echo "%F{green}($(basename $VIRTUAL_ENV))%f "
   fi
 }
-PROMPT='$(show_virtual_env)'$PROMPT
+
+PROMPT='$(show_virtual_env)%1~$(repo_indicator) %# '
+
+#---
+# History
+#---
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+
+setopt APPEND_HISTORY           # Append history instead of overwriting
+setopt SHARE_HISTORY            # Share history across sessions
+setopt EXTENDED_HISTORY         # Add timestamps to history
+setopt HIST_IGNORE_ALL_DUPS     # Don't record duplicates
+setopt HIST_REDUCE_BLANKS       # Remove unnecessary blanks
+setopt HIST_VERIFY              # Show command before executing from history
+
+#---
+# Directory Navigation
+#---
+setopt AUTO_CD                  # Auto cd without typing cd
+setopt AUTO_PUSHD               # Push old directory onto stack
+setopt PUSHD_IGNORE_DUPS        # Don't store duplicate directories
+setopt PUSHD_SILENT             # Don't print directory stack
+setopt PUSHD_TO_HOME            # Push to home when no argument
+setopt CDABLE_VARS              # cd to path stored in variable
+
+#---
+# General Options
+#---
+setopt EXTENDED_GLOB            # Extended globbing syntax
+setopt MULTIOS                  # Write to multiple descriptors
+setopt LOCAL_OPTIONS            # Allow functions to have local options
+setopt LOCAL_TRAPS              # Allow functions to have local traps
+setopt COMPLETE_IN_WORD         # Complete from both ends of word
+setopt CORRECT                  # Command correction
+setopt IGNORE_EOF               # Don't exit on EOF (Ctrl-D)
+setopt NO_BG_NICE               # Don't nice background tasks
+setopt NO_HUP                   # Don't hang up background jobs
+setopt NO_LIST_BEEP             # No beep on completion
+unsetopt CLOBBER                # Don't overwrite with > (use >!)
+
+#---
+# External Integrations
+#---
+REPORTTIME=10                   # Print elapsed time when > 10 seconds
+
+# kubectl completion
+if (( $+commands[kubectl] )); then 
+  source <(kubectl completion zsh)
+fi
+
+# jj completion
+if (( $+commands[jj] )); then
+  source <(jj util completion zsh)
+fi
+
+# direnv hook
+if (( $+commands[direnv] )); then
+  eval "$(direnv hook zsh)"
+fi
