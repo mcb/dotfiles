@@ -1,5 +1,7 @@
 .DS_Store
 config/vim/pack/
+config/jj/repos/
+config/gcloud/
 .netrwhist
 
 # will be generated
