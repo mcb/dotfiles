@@ -6,7 +6,7 @@ email = '${id}+${username}@users.noreply.github.com'
 username = '${username}'
 
 [ui]
-editor = 'vim'
+editor = 'nvim'
 pager = ':builtin'
 diff-editor = ':builtin'
 diff-formatter = ':git'
