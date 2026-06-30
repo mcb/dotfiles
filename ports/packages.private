@@ -1,8 +1,7 @@
 coreutils
 ripgrep
 gettext
-python313
-git
+python314
 nmap
 direnv
 vim
