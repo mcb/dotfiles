@@ -6,7 +6,7 @@ git
 nmap
 direnv
 vim
+neovim
 jq
 watch
-jujustsu
-neovim
+jujutsu
