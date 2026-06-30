@@ -2,11 +2,11 @@ ripgrep
 coreutils
 python313
 python314
-git
 jujutsu
 nmap
 direnv
 vim
+neovim
 jq
 container
 k9s
@@ -15,3 +15,4 @@ watch
 uv
 confluent-cli
 google-cloud-sdk
+
